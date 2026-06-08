@@ -13,7 +13,6 @@
             --teal: #006666;
             --charcoal: #2C2C2C;
             --cream: #FFFDF9;
-            --light-pink: #FFF0F5;
         }
 
         * {
@@ -333,21 +332,32 @@
     <section class="container" id="book">
         <h2 class="section-title">Secure Your Date</h2>
         <div class="booking-section">
-            <form onsubmit="alert('Thank you! Swarna will review your booking and details regarding pickup/delivery.'); return false;">
+            
+            <form action="YOUR_FORM_ENDPOINT_HERE" method="POST" onsubmit="setTimestamp()">
+                
+                <input type="hidden" id="booking_timestamp" name="Booking Timestamp">
+
                 <div class="form-group">
                     <label for="name">Your Name</label>
-                    <input type="text" id="name" placeholder="Enter full name" required>
+                    <input type="text" id="name" name="Client Name" placeholder="Enter full name" required>
                 </div>
+
+                <div class="form-group">
+                    <label for="phone">WhatsApp Contact Number</label>
+                    <input type="tel" id="phone" name="Contact Number" placeholder="Enter mobile number" required>
+                </div>
+
                 <div class="form-group">
                     <label for="date">Event Date</label>
-                    <input type="date" id="date" required>
+                    <input type="date" id="date" name="Event Date" required>
                 </div>
+
                 <div class="form-group">
                     <label for="service">Choose Service</label>
-                    <select id="service">
-                        <option>Saree Pre-Pleating & Folding</option>
-                        <option>On-Site Saree Draping</option>
-                        <option>Full Bridal Package</option>
+                    <select id="service" name="Service Type">
+                        <option value="Saree Pre-Pleating & Folding">Saree Pre-Pleating & Folding</option>
+                        <option value="On-Site Saree Draping">On-Site Saree Draping</option>
+                        <option value="Full Bridal Package">Full Bridal Package</option>
                     </select>
                 </div>
                 
@@ -355,11 +365,11 @@
                     <label>Do you need Home Pickup & Delivery?</label>
                     <div class="radio-group">
                         <div class="radio-option">
-                            <input type="radio" id="delivery-yes" name="delivery" value="yes">
+                            <input type="radio" id="delivery-yes" name="Home Pickup Required?" value="Yes (Charges apply)">
                             <label for="delivery-yes">Yes, please (Charges apply)</label>
                         </div>
                         <div class="radio-option">
-                            <input type="radio" id="delivery-no" name="delivery" value="no" checked>
+                            <input type="radio" id="delivery-no" name="Home Pickup Required?" value="No, I will drop off/visit" checked>
                             <label for="delivery-no">No, I will drop off/visit</label>
                         </div>
                     </div>
@@ -377,6 +387,20 @@
     <footer>
         <p>© 2026 Swarna Pleating Studio. Crafted with love.</p>
     </footer>
+
+    <script>
+        function setTimestamp() {
+            const now = new Date();
+            const formattedDateTime = now.getFullYear() + '-' + 
+                String(now.getMonth() + 1).padStart(2, '0') + '-' + 
+                String(now.getDate()).padStart(2, '0') + ' ' + 
+                String(now.getHours()).padStart(2, '0') + ':' + 
+                String(now.getMinutes()).padStart(2, '0') + ':' + 
+                String(now.getSeconds()).padStart(2, '0');
+            
+            document.getElementById('booking_timestamp').value = formattedDateTime;
+        }
+    </script>
 
 </body>
 </html>
