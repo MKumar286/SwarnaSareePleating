@@ -351,7 +351,7 @@
         <h2 class="section-title">Secure Your Date</h2>
         <div class="booking-section">
             
-            <form action="YOUR_FORM_ENDPOINT_HERE" method="POST" onsubmit="setTimestamp()">
+            <form action="https://sheetdb.io/api/v1/xx22lf0msrhaj" method="POST" onsubmit="setTimestamp()">
                 
                 <input type="hidden" id="booking_timestamp" name="Booking Timestamp">
 
@@ -406,8 +406,12 @@
         <p>© 2026 Swarna Pleating Studio. Crafted with love.</p>
     </footer>
 
-    <script>
-        function setTimestamp() {
+  <script>
+        // First, handle the submission using JavaScript
+        document.querySelector('form').addEventListener('submit', function(e) {
+            e.preventDefault(); // Stop the page from doing a standard reload (fixes 405)
+
+            // 1. Generate the exact timestamp
             const now = new Date();
             const formattedDateTime = now.getFullYear() + '-' + 
                 String(now.getMonth() + 1).padStart(2, '0') + '-' + 
@@ -417,7 +421,35 @@
                 String(now.getSeconds()).padStart(2, '0');
             
             document.getElementById('booking_timestamp').value = formattedDateTime;
-        }
+
+            // 2. Gather all form inputs dynamically
+            const formData = new FormData(this);
+            const formObject = {};
+            formData.forEach((value, key) => {
+                formObject[key] = value;
+            });
+
+            // 3. Send the data to SheetDB cleanly as JSON data
+            fetch("https://sheetdb.io/api/v1/xx22lf0msrhaj", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ data: [formObject] })
+            })
+            .then(response => {
+                if (response.ok) {
+                    alert("Thank you! Swarna will review your booking and details regarding pickup/delivery.");
+                    document.querySelector('form').reset(); // Clear the form fields
+                } else {
+                    alert("Something went wrong. Please try submitting again or contact us via WhatsApp.");
+                }
+            })
+            .catch(error => {
+                console.error("Error:", error);
+                alert("Connection error. Please try again.");
+            });
+        });
     </script>
 
 </body>
