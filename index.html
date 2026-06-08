@@ -351,7 +351,7 @@
         <h2 class="section-title">Secure Your Date</h2>
         <div class="booking-section">
             
-            <form action="https://sheetdb.io/api/v1/xx22lf0msrhaj" method="POST" onsubmit="setTimestamp()">
+            <form action="YOUR_FORM_ENDPOINT_HERE" method="POST" onsubmit="setTimestamp()">
                 
                 <input type="hidden" id="booking_timestamp" name="Booking Timestamp">
 
@@ -387,4 +387,38 @@
                             <label for="delivery-yes">Yes, please (Charges apply)</label>
                         </div>
                         <div class="radio-option">
-                            <input type="radio" id="delivery-no" name="Home Pickup Required?"
+                            <input type="radio" id="delivery-no" name="Home Pickup Required?" value="No, I will drop off/visit" checked>
+                            <label for="delivery-no">No, I will drop off/visit</label>
+                        </div>
+                    </div>
+                </div>
+
+                <button type="submit" class="submit-btn">Request Appointment Slot</button>
+            </form>
+        </div>
+    </section>
+
+    <a href="https://wa.me/1234567890?text=Hi%20Swarna,%20I'd%20like%20to%20book%20a%20saree%20pleating%20service!%20I'm%20also%20interested%20in%20the%20home%20pickup%20and%20delivery%20service." class="whatsapp-float" target="_blank">
+        💬 Chat / Order on WhatsApp
+    </a>
+
+    <footer>
+        <p>© 2026 Swarna Pleating Studio. Crafted with love.</p>
+    </footer>
+
+    <script>
+        function setTimestamp() {
+            const now = new Date();
+            const formattedDateTime = now.getFullYear() + '-' + 
+                String(now.getMonth() + 1).padStart(2, '0') + '-' + 
+                String(now.getDate()).padStart(2, '0') + ' ' + 
+                String(now.getHours()).padStart(2, '0') + ':' + 
+                String(now.getMinutes()).padStart(2, '0') + ':' + 
+                String(now.getSeconds()).padStart(2, '0');
+            
+            document.getElementById('booking_timestamp').value = formattedDateTime;
+        }
+    </script>
+
+</body>
+</html>
