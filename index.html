@@ -13,6 +13,7 @@
             --teal: #006666;
             --charcoal: #2C2C2C;
             --cream: #FFFDF9;
+            --light-pink: #FFF0F5;
         }
 
         * {
@@ -108,6 +109,17 @@
             transform: translateY(-2px);
         }
 
+        /* Highlight Ribbon for Doorstep/Online Services */
+        .delivery-ribbon {
+            background-color: var(--magenta);
+            color: white;
+            text-align: center;
+            padding: 15px 20px;
+            font-weight: 500;
+            font-size: 16px;
+            box-shadow: inset 0 -2px 5px rgba(0,0,0,0.1);
+        }
+
         /* Sections */
         .container {
             max-width: 1200px;
@@ -137,7 +149,7 @@
         /* Services Grid */
         .services-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 30px;
         }
 
@@ -155,17 +167,20 @@
             transform: translateY(-5px);
         }
 
-        .service-card:nth-child(2) {
-            border-top-color: var(--magenta);
-        }
-
-        .service-card:nth-child(3) {
-            border-top-color: var(--teal);
-        }
+        .service-card:nth-child(2) { border-top-color: var(--magenta); }
+        .service-card:nth-child(3) { border-top-color: var(--teal); }
+        .service-card:nth-child(4) { border-top-color: var(--dark-gold); }
 
         .service-card h3 {
             margin-bottom: 15px;
             color: var(--charcoal);
+        }
+
+        .price-note {
+            font-size: 13px;
+            color: #777;
+            margin-top: 10px;
+            font-style: italic;
         }
 
         /* Booking Form */
@@ -194,6 +209,23 @@
             border: 1px solid #ddd;
             border-radius: 5px;
             font-size: 16px;
+        }
+
+        .radio-group {
+            display: flex;
+            gap: 20px;
+            margin-top: 5px;
+        }
+
+        .radio-option {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 15px;
+        }
+
+        .radio-option input {
+            width: auto;
         }
 
         .submit-btn {
@@ -246,6 +278,7 @@
             .navbar { flex-direction: column; gap: 15px; }
             .nav-links a { margin: 0 10px; }
             .hero h1 { font-size: 32px; }
+            .radio-group { flex-direction: column; gap: 10px; }
         }
     </style>
 </head>
@@ -262,10 +295,14 @@
         </div>
     </header>
 
+    <div class="delivery-ribbon">
+        ✨ Online Booking Available! Home Pick-up & Doorstep Delivery Options are active (Service charges applicable).
+    </div>
+
     <section class="hero" id="home">
         <div class="hero-content">
             <h1>Flawless Pleats. Effortless Elegance.</h1>
-            <p>Professional saree pre-pleating, box folding, and custom draping styling built to make your special occasions graceful and stress-free.</p>
+            <p>Professional saree pre-pleating, box folding, and custom draping. Book online and enjoy hassle-free home pickup and delivery services!</p>
             <a href="#book" class="cta-btn">Book an Appointment</a>
         </div>
     </section>
@@ -282,8 +319,13 @@
                 <p>Sit back and relax. We come directly to your venue to drape you with absolute geometric perfection for weddings and celebrations.</p>
             </div>
             <div class="service-card">
-                <h3>Fabric Care Consultation</h3>
-                <p>From stiff Kanjeevarams to delicate organzas, we handle premium fabrics with specialized professional care.</p>
+                <h3>Home Pickup & Delivery</h3>
+                <p>No time to drop off your sarees? We offer premium contactless home pickup and safely deliver your pleated sarees back to your doorstep.</p>
+                <p class="price-note">*Additional service charges applicable based on location.</p>
+            </div>
+            <div class="service-card">
+                <h3>Online Bookings</h3>
+                <p>Easily reserve your dates online, track your orders, and schedule consultations right from the comfort of your home.</p>
             </div>
         </div>
     </section>
@@ -291,7 +333,7 @@
     <section class="container" id="book">
         <h2 class="section-title">Secure Your Date</h2>
         <div class="booking-section">
-            <form onsubmit="alert('Thank you! Swarna will review your request.'); return false;">
+            <form onsubmit="alert('Thank you! Swarna will review your booking and details regarding pickup/delivery.'); return false;">
                 <div class="form-group">
                     <label for="name">Your Name</label>
                     <input type="text" id="name" placeholder="Enter full name" required>
@@ -308,13 +350,28 @@
                         <option>Full Bridal Package</option>
                     </select>
                 </div>
+                
+                <div class="form-group">
+                    <label>Do you need Home Pickup & Delivery?</label>
+                    <div class="radio-group">
+                        <div class="radio-option">
+                            <input type="radio" id="delivery-yes" name="delivery" value="yes">
+                            <label for="delivery-yes">Yes, please (Charges apply)</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" id="delivery-no" name="delivery" value="no" checked>
+                            <label for="delivery-no">No, I will drop off/visit</label>
+                        </div>
+                    </div>
+                </div>
+
                 <button type="submit" class="submit-btn">Request Appointment Slot</button>
             </form>
         </div>
     </section>
 
-    <a href="https://wa.me/1234567890?text=Hi%20Swarna,%20I'd%20like%20to%20inquire%20about%20your%20saree%20pleating%20services!" class="whatsapp-float" target="_blank">
-        💬 Chat with Swarna
+    <a href="https://wa.me/1234567890?text=Hi%20Swarna,%20I'd%20like%20to%20book%20a%20saree%20pleating%20service!%20I'm%20also%20interested%20in%20the%20home%20pickup%20and%20delivery%20service." class="whatsapp-float" target="_blank">
+        💬 Chat / Order on WhatsApp
     </a>
 
     <footer>
