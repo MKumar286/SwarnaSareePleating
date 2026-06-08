@@ -67,6 +67,33 @@
             color: var(--magenta);
         }
 
+        /* Continuous Scrolling Marquee Ribbon */
+        .delivery-ribbon-container {
+            background-color: var(--magenta);
+            color: white;
+            overflow: hidden;
+            position: sticky;
+            top: 74px; /* Keeps it right beneath the navigation bar */
+            z-index: 999;
+            padding: 12px 0;
+            white-space: nowrap;
+            box-shadow: inset 0 -2px 5px rgba(0,0,0,0.1);
+        }
+
+        .delivery-ribbon-text {
+            display: inline-block;
+            padding-left: 100%;
+            font-weight: 500;
+            font-size: 16px;
+            animation: marquee 25s linear infinite;
+        }
+
+        /* Animation moving text from right to left smoothly */
+        @keyframes marquee {
+            0% { transform: translate3d(0, 0, 0); }
+            100% { transform: translate3d(-100%, 0, 0); }
+        }
+
         /* Hero Section */
         .hero {
             background: linear-gradient(rgba(145, 18, 82, 0.04), rgba(212, 175, 55, 0.08));
@@ -106,17 +133,6 @@
         .cta-btn:hover {
             background-color: #720e40;
             transform: translateY(-2px);
-        }
-
-        /* Highlight Ribbon for Doorstep/Online Services */
-        .delivery-ribbon {
-            background-color: var(--magenta);
-            color: white;
-            text-align: center;
-            padding: 15px 20px;
-            font-weight: 500;
-            font-size: 16px;
-            box-shadow: inset 0 -2px 5px rgba(0,0,0,0.1);
         }
 
         /* Sections */
@@ -294,8 +310,10 @@
         </div>
     </header>
 
-    <div class="delivery-ribbon">
-        ✨ Online Booking Available! Home Pick-up & Doorstep Delivery Options are active (Service charges applicable).
+    <div class="delivery-ribbon-container">
+        <div class="delivery-ribbon-text">
+            ✨ Online Booking Available! Home Pick-up & Doorstep Delivery Options are active (Service charges applicable). &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ✨ Flawless Pleats & Effortless Elegance delivered right to your doorstep!
+        </div>
     </div>
 
     <section class="hero" id="home">
@@ -369,38 +387,4 @@
                             <label for="delivery-yes">Yes, please (Charges apply)</label>
                         </div>
                         <div class="radio-option">
-                            <input type="radio" id="delivery-no" name="Home Pickup Required?" value="No, I will drop off/visit" checked>
-                            <label for="delivery-no">No, I will drop off/visit</label>
-                        </div>
-                    </div>
-                </div>
-
-                <button type="submit" class="submit-btn">Request Appointment Slot</button>
-            </form>
-        </div>
-    </section>
-
-    <a href="https://wa.me/1234567890?text=Hi%20Swarna,%20I'd%20like%20to%20book%20a%20saree%20pleating%20service!%20I'm%20also%20interested%20in%20the%20home%20pickup%20and%20delivery%20service." class="whatsapp-float" target="_blank">
-        💬 Chat / Order on WhatsApp
-    </a>
-
-    <footer>
-        <p>© 2026 Swarna Pleating Studio. Crafted with love.</p>
-    </footer>
-
-    <script>
-        function setTimestamp() {
-            const now = new Date();
-            const formattedDateTime = now.getFullYear() + '-' + 
-                String(now.getMonth() + 1).padStart(2, '0') + '-' + 
-                String(now.getDate()).padStart(2, '0') + ' ' + 
-                String(now.getHours()).padStart(2, '0') + ':' + 
-                String(now.getMinutes()).padStart(2, '0') + ':' + 
-                String(now.getSeconds()).padStart(2, '0');
-            
-            document.getElementById('booking_timestamp').value = formattedDateTime;
-        }
-    </script>
-
-</body>
-</html>
+                            <input type="radio" id="delivery-no" name="Home Pickup Required?"
